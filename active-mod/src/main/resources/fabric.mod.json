@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "luke_lab",
+  "version": "${version}",
+  "name": "Luke's Mod Lab",
+  "description": "A Minecraft laboratory for learning Java by building visible mod mechanics.",
+  "authors": ["Luke"],
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "dev.luke.lab.LukeLabMod"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.19.5",
+    "minecraft": "~1.21.1",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}
