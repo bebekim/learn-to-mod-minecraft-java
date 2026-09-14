@@ -13,8 +13,9 @@ Ordering is mod-led: each unit starts from a real mod feature (from the Fabric W
 ## Unit 1 - Items & Crafting
 
 - Outcome: a real item (lightning wand) with behavior, craftable via a custom recipe, remembers something via NBT.
-- Concepts: registration pattern, method overriding (first taste of polymorphism), objects holding state, JSON/datapack literacy.
+- Concepts: scoping (`public` vs `private`), registration pattern, method overriding (first taste of polymorphism), objects holding state, JSON/datapack literacy.
 - Sources: HTDC (Information -> Representation); job posting's "custom crafting systems" and JSON bonus qualifications.
+- Scoping note: this is the first lesson with a second class (`LabItems`, registering the wand) that needs to reach into `LukeLabMod`. It only compiles because `MOD_ID` is `public`; `LAB_MESSAGE` is `private` and genuinely cannot be seen from outside. Both modifiers were already present unexplained since lesson 01 - this is where they get a felt consequence instead of a definition. Scope this to `public`/`private` only; `protected` and package-private can wait for a unit that actually needs them.
 
 ## Unit 2 - Blocks & State
 
