@@ -55,6 +55,7 @@ active-mod/          Fabric mod Luke opens in IntelliJ
 01-setup/           first setup lesson
 00-prerequisites.md tools to install before lesson 1
 00-instructor-guide.md parent notes
+CURRICULUM.md        20,000-ft view of the units after setup
 LESSON-TEMPLATE.md  shape for later lessons
 ```
 
