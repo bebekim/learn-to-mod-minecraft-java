@@ -1,4 +1,4 @@
-package dev.luke.lab;
+    package dev.luke.lab;
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 public final class LukeLabMod implements ModInitializer {
     public static final String MOD_ID = "luke_lab";
     private static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
-    private static final String LAB_MESSAGE = "Lab is loaded. Change this message, rebuild, run again.";
+    private static final String LAB_MESSAGE = "Hello, Luke. Welcome to the Luke's Lab World";
 
     @Override
     public void onInitialize() {
