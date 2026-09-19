@@ -60,7 +60,7 @@ Choose the Temurin 21 JDK. A build that works in PowerShell can still fail in In
 
 ## Other Windows Setup Notes
 
-- **Cloning needs authentication.** The course repo is private, so the bare `git clone` in lesson 01 will prompt for credentials. Sign in to GitHub Desktop first, or run `gh auth login`, before the cloning step.
+- **Cloning needs no account.** The course repo is public, so the `git clone` in lesson 01 works as written with no sign-in. A GitHub account is only needed to *push* a lesson checkpoint back up.
 - **First `runClient` is slow and touches the network.** It downloads Minecraft's assets, and Windows Firewall will likely prompt to allow Java. Allow it on private networks. Budget real time for this step rather than doing it in front of an impatient kid.
 - **The dev client is not the Minecraft launcher.** `runClient` launches its own Minecraft instance and does not ask for a Microsoft sign-in for singleplayer. Luke's normal launcher and worlds are untouched, and the lab world lives only inside the dev environment.
 - **Long paths.** Gradle and Loom create deeply nested cache folders that can exceed Windows' old 260-character limit. If a build fails with a path-too-long error, enable long paths:
