@@ -14,9 +14,27 @@ int uses = 3;
 boolean enabled = true;
 ```
 
+## Step 0: Check Java First
+
+Everything below fails in confusing ways if this is wrong, so check it before anything else. Open a **new** PowerShell window and run:
+
+```powershell
+$env:JAVA_HOME
+java -version
+```
+
+Two things must be true:
+
+- `java -version` says `21`.
+- `JAVA_HOME` points at the JDK 21 folder, with no trailing `\bin`.
+
+If `JAVA_HOME` prints nothing, set it under `System Properties -> Environment Variables`, then open a new PowerShell window and check again. Gradle needs it. Java 17 is not close enough - the build will not even reach Luke's code.
+
+Note: installing Fabric into the Minecraft launcher is not part of this course. That is for playing published mods. Here, Fabric arrives automatically as a Gradle dependency, and `runClient` builds its own Minecraft.
+
 ## Step 1: Clone the Repo
 
-Open PowerShell:
+The repo is public, so this needs no sign-in.
 
 ```powershell
 cd Documents
@@ -26,42 +44,54 @@ git clone https://github.com/bebekim/learn-to-mod-minecraft-java
 cd learn-to-mod-minecraft-java
 ```
 
-## Step 2: Open the Mod
+Using GitHub Desktop instead is fine. Choose `File -> Clone repository`, pick `bebekim/learn-to-mod-minecraft-java`, and change the local path from the default `Documents\GitHub` to `Documents\game-dev` so it matches the layout above.
 
-First prove the build works.
+## Step 2: Prove the Build from PowerShell
+
+Do this *before* opening IntelliJ. If something is broken, you want to know it is Java or the network - not IntelliJ's settings.
 
 ```powershell
 cd Documents\game-dev\learn-to-mod-minecraft-java\active-mod
 .\gradlew.bat build
 ```
 
-Open IntelliJ IDEA.
+The first run is slow. It downloads Gradle, then Minecraft, then remaps it, and Windows Firewall will probably ask to allow Java - allow it. Wait for:
 
-Choose `Open`, then select:
+```text
+BUILD SUCCESSFUL
+```
+
+## Step 3: Open the Mod in IntelliJ
+
+Open IntelliJ IDEA, choose `Open`, and select the **`active-mod`** folder, not the repo root:
 
 ```text
 Documents\game-dev\learn-to-mod-minecraft-java\active-mod
 ```
 
-Wait for Gradle to finish importing.
+Then point IntelliJ at Java 21. It does not read `JAVA_HOME` and ships its own runtime, so Step 0 passing does not mean this is already right:
 
-## Step 3: Run Minecraft
+```text
+File -> Settings -> Build, Execution, Deployment -> Build Tools -> Gradle -> Gradle JVM
+```
 
-Run:
+Set it to the Temurin 21 JDK. Then wait for Gradle to finish importing before doing anything else.
+
+## Step 4: Run Minecraft
 
 ```powershell
 .\gradlew.bat runClient
 ```
 
-Or in IntelliJ's Gradle panel, run:
+Or in IntelliJ's Gradle panel:
 
 ```text
 Tasks -> fabric -> runClient
 ```
 
-Minecraft should open with the mod loaded.
+Minecraft should open with the mod loaded. It will not ask for a Microsoft sign-in - that is normal for a dev client, and it does not touch Luke's usual Minecraft or his existing worlds.
 
-## Step 4: Create the Lab World
+## Step 5: Create the Lab World
 
 Create a creative superflat world named:
 
@@ -76,13 +106,15 @@ Suggested world settings:
 - Cheats on
 - Superflat
 
-## Step 5: Prove the Loop
+## Step 6: Prove the Loop
 
-You should see:
+Join the world. The mod prints its message in chat as soon as you are in:
 
 ```text
-Lab is loaded. Change this message, rebuild, run again.
+Hello, Luke. Welcome to the Luke's Lab World
 ```
+
+Seeing that means the whole chain works: your Java code compiled, Gradle packaged it as a mod, Fabric loaded it, and Minecraft ran it.
 
 ## Exercise 1.1 - Change a String
 
@@ -92,16 +124,21 @@ Open:
 active-mod/src/main/java/dev/luke/lab/LukeLabMod.java
 ```
 
-Find:
+Find the line that starts like this - the words inside the quotes are whatever the message currently says:
 
 ```java
-private static final String LAB_MESSAGE = "Lab is loaded. Change this message, rebuild, run again.";
+private static final String LAB_MESSAGE = "...";
 ```
 
-Change the words inside the quotation marks.
+Change the words inside the quotation marks. Leave the quotes themselves alone.
 
-Run `runClient` again and type:
-Join the world again and check the chat message.
+Then, in this order:
+
+1. **Quit Minecraft.** This matters. A running game keeps the code it was launched with, so editing the file changes nothing until you relaunch.
+2. Run `.\gradlew.bat runClient` again.
+3. Join the world and read the chat message.
+
+Before you run it, say out loud what you expect to see. Then check whether you were right.
 
 ## Design Check
 
@@ -138,3 +175,5 @@ git status
 git add .
 git commit -m "week 01: setup mod lab"
 ```
+
+This saves the checkpoint on Luke's own machine. There is no need to push it anywhere - the course never depends on uploading, and every later lesson works from local commits.
