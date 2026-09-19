@@ -1,0 +1,17 @@
+# Keep line endings identical on the Mac and the Windows machine.
+# Without this, Git for Windows (which installs with core.autocrlf=true)
+# rewrites every Java file to CRLF, and the next commit looks like the whole
+# file changed.
+
+* text=auto eol=lf
+
+# gradlew is a POSIX shell script and must stay LF.
+gradlew text eol=lf
+
+# Windows batch files must keep CRLF to run reliably.
+*.bat text eol=crlf
+
+# Never convert binaries.
+*.jar binary
+*.png binary
+*.ogg binary
