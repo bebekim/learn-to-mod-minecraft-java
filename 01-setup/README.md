@@ -22,7 +22,7 @@ Open PowerShell:
 cd Documents
 mkdir game-dev
 cd game-dev
-git clone https://github.com/vegematie/learn-to-mod-minecraft-java
+git clone https://github.com/bebekim/learn-to-mod-minecraft-java
 cd learn-to-mod-minecraft-java
 ```
 
