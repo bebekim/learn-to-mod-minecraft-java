@@ -55,11 +55,15 @@ cd Documents\game-dev\learn-to-mod-minecraft-java\active-mod
 .\gradlew.bat build
 ```
 
-The first run is slow. It downloads Gradle, then Minecraft, then remaps it, and Windows Firewall will probably ask to allow Java - allow it. Wait for:
+Gradle does not need installing. `gradlew.bat` is the Gradle *wrapper*: it comes with the repo and downloads the exact Gradle version this project is pinned to, so every machine builds with the same one. Do not install Gradle separately.
+
+The first run is slow, and mostly silent while it remaps Minecraft. In order, it downloads Gradle, downloads Minecraft and its libraries, remaps them, then compiles the mod. Windows Firewall will probably ask to allow Java - allow it. Wait for:
 
 ```text
 BUILD SUCCESSFUL
 ```
+
+Later builds take seconds, because all of that is cached.
 
 ## Step 3: Open the Mod in IntelliJ
 
