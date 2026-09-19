@@ -28,7 +28,7 @@ Two things must be true:
 - `java -version` says `21`.
 - `JAVA_HOME` points at the JDK 21 folder, with no trailing `\bin`.
 
-If `JAVA_HOME` prints nothing, set it under `System Properties -> Environment Variables`, then open a new PowerShell window and check again. Gradle needs it. Java 17 is not close enough - the build will not even reach Luke's code.
+Either one can be wrong even though JDK 21 is installed - the installer does not always set them. If `JAVA_HOME` prints nothing, or `java -version` reports anything other than 21, stop here and fix it first: see **Fixing Java on Windows** in [SETUP.md](SETUP.md). Java 17 is not close enough - the build will not even reach Luke's code.
 
 Note: installing Fabric into the Minecraft launcher is not part of this course. That is for playing published mods. Here, Fabric arrives automatically as a Gradle dependency, and `runClient` builds its own Minecraft.
 
